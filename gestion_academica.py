@@ -4,7 +4,13 @@ key = True
 #Sistema de adición de estudiantes
 def student_add(dictionary, max_students):
     for attempt in range(max_students):
-        student_id = input("Coloque el ID del estudiante: ")
+        id_tested = False
+        while not id_tested:
+            student_id = input("Coloque el ID del estudiante: ")
+            if student_id in dictionary:
+                print("Ese estudiante ya existe...")
+            else:
+                id_tested = True
         s_name = input("Coloque el nombre del estudiante: ")
         dictionary[student_id] = {
             "name": s_name,
@@ -12,7 +18,21 @@ def student_add(dictionary, max_students):
         }
     return dictionary
 
-
+# Agregado de cursos
+def course_addition(student, max_courses):
+    for attempt in range(max_courses):
+        course_name = input("Coloque el nombre del curso: ")
+        score_validation = False
+        while not score_validation:
+            course_score = int(input("Coloque el nombre del estudiante: "))
+            if course_score < 0 or course_score > 100:
+                print("Esa no es una nota válida")
+            else:
+                score_validation = True
+        student["courses"][course_name] = {
+            "score": course_score
+        }
+    return student
 try:
     while key:
         print("------------Bienvenido al programa---------")
@@ -29,7 +49,10 @@ try:
                 max_s = int(input("¿Cuántos estudiantes desea agregar?: "))
                 student_add(students_control, max_s)
             case "2":
-                pass
+                id_searched = input("Coloque el ID que desea buscar: ")
+                if id_searched in students_control:
+                    max_c = int(input("¿Cuántos cursos desea agregar?: "))
+                    course_addition(students_control[id_searched], max_c)
             case "3":
                 pass
             case "4":
@@ -43,3 +66,5 @@ try:
 
 except ValueError:
     print("Eso no es un número")
+except Exception as e:
+    print("Anomalía detectada: {}".format(e))
