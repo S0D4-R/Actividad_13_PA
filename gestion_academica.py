@@ -115,7 +115,7 @@ try:
                         print(f"♥ Curso: {course}|Nota: {score["score"]}\n")
             case "7":
                 key = False
-#
+#Terminado
 except ValueError:
     print("Eso no es un número")
 except Exception as e:
