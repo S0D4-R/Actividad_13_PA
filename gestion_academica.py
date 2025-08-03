@@ -46,7 +46,7 @@ def status_avg_calc(dictionary, mod):
     approved_courses = 0
     for course_avg, score_avg in dictionary["courses"].items():
         div_end += 1
-        total += score["score"]
+        total += score_avg["score"]
         if score_avg["score"] >= 61 and mod == 2:
             print(f"El curso {course_avg} fue aprobado con {score_avg["score"]} puntos\n")
             approved_courses += 1
