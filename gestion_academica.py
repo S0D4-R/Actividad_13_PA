@@ -28,7 +28,7 @@ def course_addition(student, max_courses):
         course_name = input("Coloque el nombre del curso: ")
         score_validation = False
         while not score_validation:
-            course_score = int(input("Coloque el nombre del estudiante: "))
+            course_score = int(input("Coloque la nota del estudiante: "))
             if course_score < 0 or course_score > 100:
                 print("Esa no es una nota válida")
             else:
@@ -53,7 +53,7 @@ def status_avg_calc(dictionary, mod):
         elif score_avg["score"] < 61 and mod == 2:
             print(f"El curso {course_avg} NO fue aprobado, sacó {score_avg["score"]} puntos\n")
     if mod == 0:
-        print(f"Su promedio general es: {total/div_end}")
+        print(f"Su promedio general es: { total/ div_end}")
     elif mod == 2:
         if approved_courses == div_end:
             print("♥ Aprobado ♥")
