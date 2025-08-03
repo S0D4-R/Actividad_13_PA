@@ -41,17 +41,24 @@ def course_addition(student, max_courses):
 def status_avg_calc(dictionary, mod):
     div_end = 0
     total = 0
+    approved_courses = 0
     for course_avg, score_avg in dictionary["courses"].items():
         div_end += 1
         total += score["score"]
         if score["score"] >= 61 and mod == 2:
             print(f"El curso {course_avg} fue aprobado con {score_avg["score"]} puntos\n")
+            approved_courses += 1
         elif score["score"] < 61 and mod == 2:
             print(f"El curso {course_avg} NO fue aprobado, sacó {score_avg["score"]} puntos\n")
     if mod == 0:
-        print(f"El promedio general es: {total/div_end}")
+        print(f"Su promedio general es: {total/div_end}")
+    elif mod == 2:
+        if approved_courses == div_end:
+            print("♥ Aprobado ♥")
+        else:
+            print("◘ NO APROBADO ◘")
 
-
+#Menú-------
 try:
     while key:
         print("------------Bienvenido al programa---------")
@@ -84,7 +91,9 @@ try:
                 if avg_searcher in students_control:
                     status_avg_calc(students_control[avg_searcher], 0)
             case "5":
-                pass
+                appr_searcher = input("Coloque el ID del estudiante: ")
+                if appr_searcher in students_control:
+                    status_avg_calc(students_control[appr_searcher], 2)
             case "6":
                 pass
             case "7":
