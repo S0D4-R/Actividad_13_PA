@@ -81,6 +81,8 @@ try:
                 if id_searched in students_control:
                     max_c = int(input("¿Cuántos cursos desea agregar?: "))
                     course_addition(students_control[id_searched], max_c)
+                else:
+                    print("El estudiante no existe o no hay estudiantes")
             case "3":
                 display_searched = input("Coloque el ID del estudiante al que quiere consultar: ")
                 if display_searched in students_control:
@@ -88,14 +90,20 @@ try:
                           f"Carrera: {students_control[display_searched]["carreer"]}\n♦ Cursos: ♦")
                     for course, score in students_control[display_searched]["courses"].items():
                         print(f"♥ Curso: {course}|Nota: {score["score"]}\n")
+                else:
+                    print("El estudiante no existe o no hay estudiantes")
             case "4":
                 avg_searcher = input("Coloque el ID del estudiante: ")
                 if avg_searcher in students_control:
                     status_avg_calc(students_control[avg_searcher], 0)
+                else:
+                    print("El estudiante no existe o no hay estudiantes")
             case "5":
                 appr_searcher = input("Coloque el ID del estudiante: ")
                 if appr_searcher in students_control:
                     status_avg_calc(students_control[appr_searcher], 2)
+                else:
+                    print("El estudiante no existe o no hay estudiantes")
             case "6":
                 stud_count = 0
                 for code, student in students_control.items():
