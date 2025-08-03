@@ -1,5 +1,18 @@
-students = {}
+students_control = {}
 key = True
+
+#Sistema de adición de estudiantes
+def student_add(dictionary, max_students):
+    for attempt in range(max_students):
+        student_id = input("Coloque el ID del estudiante: ")
+        s_name = input("Coloque el nombre del estudiante: ")
+        dictionary[student_id] = {
+            "name": s_name,
+            "courses": {}
+        }
+    return dictionary
+
+
 try:
     while key:
         print("------------Bienvenido al programa---------")
@@ -13,7 +26,8 @@ try:
                     "Escoja una opción: ")
         match ops:
             case "1":
-                pass
+                max_s = int(input("¿Cuántos estudiantes desea agregar?: "))
+                student_add(students_control, max_s)
             case "2":
                 pass
             case "3":
