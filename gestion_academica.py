@@ -3,16 +3,18 @@ key = True
 
 #Sistema de adición de estudiantes
 def student_add(dictionary, max_students):
+    attempt = 0
     for attempt in range(max_students):
+        attempt += 1
         id_tested = False
         while not id_tested:
-            student_id = input("Coloque el ID del estudiante: ")
+            student_id = input(f"Coloque el ID del estudiante {attempt}: ")
             if student_id in dictionary:
                 print("Ese estudiante ya existe...")
             else:
                 id_tested = True
         s_name = input("Coloque el nombre del estudiante: ")
-        s_career = input("Coloque la carrera que cursa: ")
+        s_career = input("Coloque la carrera que cursa: \n")
         dictionary[student_id] = {
             "name": s_name,
             "carreer": s_career,
@@ -45,10 +47,10 @@ def status_avg_calc(dictionary, mod):
     for course_avg, score_avg in dictionary["courses"].items():
         div_end += 1
         total += score["score"]
-        if score["score"] >= 61 and mod == 2:
+        if score_avg["score"] >= 61 and mod == 2:
             print(f"El curso {course_avg} fue aprobado con {score_avg["score"]} puntos\n")
             approved_courses += 1
-        elif score["score"] < 61 and mod == 2:
+        elif score_avg["score"] < 61 and mod == 2:
             print(f"El curso {course_avg} NO fue aprobado, sacó {score_avg["score"]} puntos\n")
     if mod == 0:
         print(f"Su promedio general es: {total/div_end}")
@@ -56,7 +58,7 @@ def status_avg_calc(dictionary, mod):
         if approved_courses == div_end:
             print("♥ Aprobado ♥")
         else:
-            print("◘ NO APROBADO ◘")
+            print("◘ NO APROBADO ◘ JAJAJAJA")
 
 #Menú-------
 try:
@@ -95,7 +97,14 @@ try:
                 if appr_searcher in students_control:
                     status_avg_calc(students_control[appr_searcher], 2)
             case "6":
-                pass
+                stud_count = 0
+                for code, student in students_control.items():
+                    stud_count += 1
+                    print(f"-----Estudiante {stud_count}------")
+                    print(f"Carné: {code} || Nombre: {student["name"]}\n"
+                          f"♦ Cursos:\n")
+                    for course, score in students_control[code]["courses"].items():
+                        print(f"♥ Curso: {course}|Nota: {score["score"]}\n")
             case "7":
                 key = False
 
