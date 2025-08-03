@@ -12,8 +12,10 @@ def student_add(dictionary, max_students):
             else:
                 id_tested = True
         s_name = input("Coloque el nombre del estudiante: ")
+        s_career = input("Coloque la carrera que cursa: ")
         dictionary[student_id] = {
             "name": s_name,
+            "carreer": s_career,
             "courses": {}
         }
     return dictionary
@@ -54,7 +56,12 @@ try:
                     max_c = int(input("¿Cuántos cursos desea agregar?: "))
                     course_addition(students_control[id_searched], max_c)
             case "3":
-                pass
+                display_searched = input("Coloque el ID del estudiante al que quiere consultar: ")
+                if display_searched in students_control:
+                    print(f"\nAlumno: {students_control[display_searched]["name"]}\n"
+                          f"Carrera: {students_control[display_searched]["carreer"]}\n♦ Cursos: ♦")
+                    for course, score in students_control[display_searched]["courses"].items():
+                        print(f"♥ Curso: {course}|Nota: {score["score"]}\n")
             case "4":
                 pass
             case "5":
@@ -62,9 +69,11 @@ try:
             case "6":
                 pass
             case "7":
-                pass
+                key = False
 
 except ValueError:
     print("Eso no es un número")
 except Exception as e:
     print("Anomalía detectada: {}".format(e))
+finally:
+    print("♥ Gracias por usar el programa ♥")
